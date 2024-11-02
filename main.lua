@@ -1,6 +1,22 @@
+require "maps.map"
+
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 840
+
+local tiles = {
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0
+
+}
+
+local gMap = Map:New(tiles, 8, 6)
+
 function love.load()
-    sti = require 'libraries.sti'
-    gameMap = sti('maps/Map.lua')
+    love.window.setMode(SCREEN_WIDTH, SCREEN_HEIGHT, {vsync=true, fullscreen=false})
 end
 
 function love.update(dt)
@@ -8,5 +24,5 @@ function love.update(dt)
 end
 
 function love.draw()
-    gameMap:draw()
+
 end
