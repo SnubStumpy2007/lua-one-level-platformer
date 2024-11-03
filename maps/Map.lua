@@ -14,9 +14,10 @@ end
 
 function Map:Render()
     for row = 0, self.height do
-        for col = 0, self.width do
+        for col = 0, self.width -1 do
             local sx = col * self.cellSize
-            local sy = col * self.cellSize
+            local sy = row * self.cellSize
+            local tile = self.tiles[row * self.width + col]
             love.graphics.rectangle("line", sx, sy, self.cellSize, self.cellSize)
         end
     end
