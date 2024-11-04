@@ -1,3 +1,6 @@
+--Opted for using simple tile library as it requires less code.  However, this was a good learning 
+--experience.  So, this code will stay with the game, just not linked
+
 Map = {}
 Map.__index = Map
 
