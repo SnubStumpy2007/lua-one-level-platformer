@@ -30,16 +30,16 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="Platforms">
-  <object id="1" x="1.15778" y="511.739" width="219.979" height="129.672"/>
-  <object id="2" x="384.384" y="511.739" width="27.7868" height="127.356"/>
+ <objectgroup id="3" name="Walls">
+  <object id="1" x="1.15778" y="511.739" width="222.479" height="129.672"/>
+  <object id="2" x="384.384" y="511.739" width="31.7868" height="127.356"/>
   <object id="3" x="544.157" y="514.055" width="157.458" height="126.198"/>
   <object id="4" x="802.343" y="481.637" width="27.7868" height="158.616"/>
   <object id="5" x="863.705" y="480.479" width="157.458" height="26.629"/>
   <object id="6" x="866.021" y="383.226" width="93.7803" height="31.2601"/>
-  <object id="7" x="576.575" y="285.972" width="254.712" height="32.4179"/>
-  <object id="8" x="192.192" y="225.767" width="353.123" height="31.2601"/>
-  <object id="9" x="320.706" y="98.4114" width="448.062" height="31.2601"/>
+  <object id="7" x="576.575" y="289.472" width="254.712" height="28.9179"/>
+  <object id="8" x="193.192" y="225.767" width="348.623" height="31.2601"/>
+  <object id="9" x="321.864" y="97.227" width="448.062" height="29.2868"/>
  </objectgroup>
  <layer id="1" name="Platforms" width="32" height="20">
   <data encoding="csv">

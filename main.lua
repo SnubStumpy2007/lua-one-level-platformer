@@ -11,11 +11,13 @@ function love.load()
   sti = require('libraries.sti')
   gameMap = sti('maps/gameMap.lua')
   push = require('libraries.push-master.push')
+  wf = require('libraries.windfield-master.windfield.mlib.mlib')
+
 
 
   -- importing modules
   player = require('/modules/player')
-  walls = require('/modules/walls')
+ -- walls = require('/modules/walls')
 
 
   -- push setup for fullscreen game
@@ -24,6 +26,16 @@ function love.load()
 end
 
 function love.update(dt)
+
+  -- player moviement
+  if love.keyboard.isDown("d") then
+    player.x = player.x + 3
+  elseif love.keyboard.isDown("a") then
+    player.x = player.x - 3
+  elseif love.keyboard.isDown("space") then
+    player.y = player.y - 3
+  end
+
   --press the escape key to exit the game
     if love.keyboard.isDown("escape") then
       love.event.quit()
