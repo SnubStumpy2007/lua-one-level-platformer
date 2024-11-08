@@ -12,6 +12,7 @@ function love.load()
   gameMap = sti('maps/gameMap.lua')
   push = require('libraries.push-master.push')
   anim8 = require('libraries/anim8')
+  love.graphics.setDefaultFilter("nearest", "nearest")
 
   -- windfield physics 
   wf = require('libraries/windfield')
@@ -50,6 +51,8 @@ function love.update(dt)
     end
 
     world:update(dt)
+
+    player.animations.right:update(dt)
 end
 
 function love.resize(w,h)
@@ -59,7 +62,8 @@ end
 function love.draw()
   push:start()
     gameMap:draw(0,0)
-    love.graphics.draw(player.spriteSheet, player.x, player.y)
+    --love.graphics.draw(player.spriteSheet, player.x, player.y)
+    player.animations.right:draw(player.spriteSheet, player.x, player.y, nil, 2)
     world:draw()
     push:finish()
 end
