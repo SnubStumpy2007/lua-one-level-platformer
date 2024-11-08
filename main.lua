@@ -11,8 +11,12 @@ function love.load()
   sti = require('libraries.sti')
   gameMap = sti('maps/gameMap.lua')
   push = require('libraries.push-master.push')
-  wf = require('libraries.windfield-master.windfield.mlib.mlib')
+  wf = require('libraries/windfield')
+  world = wf.newWorld(0,0, true)
 
+  -- test code to test gravity and physics
+  rectangle = world:newRectangleCollider(350, 100, 80, 80)
+  world:setGravity(0, 150)
 
 
   -- importing modules
@@ -40,6 +44,8 @@ function love.update(dt)
     if love.keyboard.isDown("escape") then
       love.event.quit()
     end
+
+    world:update(dt)
 end
 
 function love.resize(w,h)
@@ -50,5 +56,6 @@ function love.draw()
   push:start()
     gameMap:draw(0,0)
     love.graphics.draw(player.sprite, player.x, player.y)
+    world:draw()
     push:finish()
 end
