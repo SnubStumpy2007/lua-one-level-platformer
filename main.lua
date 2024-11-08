@@ -11,12 +11,15 @@ function love.load()
   sti = require('libraries.sti')
   gameMap = sti('maps/gameMap.lua')
   push = require('libraries.push-master.push')
+
+  -- windfield physics 
   wf = require('libraries/windfield')
   world = wf.newWorld(0,0, true)
+  world:setGravity(0, 150)
 
   -- test code to test gravity and physics
   rectangle = world:newRectangleCollider(350, 100, 80, 80)
-  world:setGravity(0, 150)
+
 
 
   -- importing modules
