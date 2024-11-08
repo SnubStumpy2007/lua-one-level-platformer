@@ -11,11 +11,12 @@ function love.load()
   sti = require('libraries.sti')
   gameMap = sti('maps/gameMap.lua')
   push = require('libraries.push-master.push')
+  anim8 = require('libraries/anim8')
 
   -- windfield physics 
   wf = require('libraries/windfield')
   world = wf.newWorld(0,0, true)
-  world:setGravity(0, 150)
+  --world:setGravity(0, 150)
 
   -- test code to test gravity and physics
   rectangle = world:newRectangleCollider(350, 100, 80, 80)
@@ -58,7 +59,7 @@ end
 function love.draw()
   push:start()
     gameMap:draw(0,0)
-    love.graphics.draw(player.sprite, player.x, player.y)
+    love.graphics.draw(player.spriteSheet, player.x, player.y)
     world:draw()
     push:finish()
 end
