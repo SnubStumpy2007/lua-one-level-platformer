@@ -52,7 +52,8 @@ function love.update(dt)
 
     world:update(dt)
 
-    player.animations.right:update(dt)
+    player.anim:update(dt)
+  
 end
 
 function love.resize(w,h)
@@ -63,7 +64,8 @@ function love.draw()
   push:start()
     gameMap:draw(0,0)
     --love.graphics.draw(player.spriteSheet, player.x, player.y)
-    player.animations.right:draw(player.spriteSheet, player.x, player.y, nil, 2)
+    player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2)
+
     world:draw()
     push:finish()
 end

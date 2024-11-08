@@ -8,7 +8,9 @@ player.grid = anim8.newGrid(32, 32, player.spriteSheet:getWidth(), player.sprite
 
 
 player.animations = {}
-player.animations.right = anim8.newAnimation(player.grid('1-5', 1), 0.2)
+player.animations.right = anim8.newAnimation(player.grid('1-8', 2), 0.2)
 player.animations.left = anim8.newAnimation(player.grid('1-8', 2), 0.2)
+
+player.anim = player.animations.right
 
 return player
