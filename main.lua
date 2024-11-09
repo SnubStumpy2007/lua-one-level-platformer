@@ -38,9 +38,13 @@ function love.update(dt)
 
   -- player moviement
   if love.keyboard.isDown("d") then
-    player.x = player.x + 3
+    player.x = player.x + player.speed
+    player.anim = player.animations.right
+
   elseif love.keyboard.isDown("a") then
-    player.x = player.x - 3
+    player.x = player.x - player.speed
+    player.anim = player.animations.left
+
   elseif love.keyboard.isDown("space") then
     player.y = player.y - 3
   end
@@ -63,7 +67,7 @@ end
 function love.draw()
   push:start()
     gameMap:draw(0,0)
-    --love.graphics.draw(player.spriteSheet, player.x, player.y)
+  
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 2)
 
     world:draw()
