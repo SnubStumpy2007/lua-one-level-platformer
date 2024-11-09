@@ -36,17 +36,27 @@ end
 
 function love.update(dt)
 
+  local isMoving = false
+
+  local vx = 0
+  local vy = 0
+
   -- player moviement
   if love.keyboard.isDown("d") then
-    player.x = player.x + player.speed
+    vx = player.x + player.speed
     player.anim = player.animations.right
-
+    isMoving = true
   elseif love.keyboard.isDown("a") then
-    player.x = player.x - player.speed
+    vy = player.x - player.speed
     player.anim = player.animations.left
-
+    isMoving = true
   elseif love.keyboard.isDown("space") then
-    player.y = player.y - 3
+    vy = player.y - 3
+    isMoving = true
+  end
+
+  if isMoving == true then
+    player.anim:gotoFrame(1)
   end
 
   --press the escape key to exit the game
