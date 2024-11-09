@@ -55,6 +55,8 @@ function love.update(dt)
     end
 
     world:update(dt)
+    player.x = player.collider:getX()
+    player.y = player.collider:getY()
 
     player.anim:update(dt)
   
