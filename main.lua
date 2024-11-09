@@ -47,13 +47,15 @@ function love.update(dt)
     player.anim = player.animations.right
     isMoving = true
   elseif love.keyboard.isDown("a") then
-    vy = player.x - player.speed
+    vx = player.x - player.speed
     player.anim = player.animations.left
     isMoving = true
   elseif love.keyboard.isDown("space") then
     vy = player.y - 3
     isMoving = true
   end
+
+  player.collider:setLinearVelocity(vx, vy)
 
   if isMoving == true then
     player.anim:gotoFrame(1)
