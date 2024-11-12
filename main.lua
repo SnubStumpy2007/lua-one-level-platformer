@@ -20,7 +20,7 @@ function love.load()
   --world:setGravity(0, 150)
 
   -- test code to test gravity and physics
-  rectangle = world:newRectangleCollider(350, 100, 80, 80)
+  --rectangle = world:newRectangleCollider(100,430, 40, 80)
 
 
 
@@ -89,7 +89,9 @@ function love.draw()
       offsetX = 32
     end
 
-    player.anim:draw(player.spriteSheet, player.x + offsetX, player.y, 0,player.scaleX, 2)
+    local spriteWidth = 32 * 2
+    local spriteHeight = 32 * 2
+    player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
 
     world:draw()
     push:finish()
