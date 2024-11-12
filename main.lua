@@ -49,7 +49,7 @@ function love.update(dt)
   elseif love.keyboard.isDown("a") then
     vx = - player.speed
    -- player.anim = player.animations.walk
-    player.scaleX = -2
+    player.scaleX = -2 
     isMoving = true
   elseif love.keyboard.isDown("space") then
     vy = player.y * - 3
@@ -84,13 +84,10 @@ function love.draw()
   push:start()
     gameMap:draw(0,0)
 
-    local offsetX = 0
-    if player.scaleX < 0 then
-      offsetX = 32
-    end
 
     local spriteWidth = 32 * 2
     local spriteHeight = 32 * 2
+    local offsetX = player.scaleX < 0 and spriteWidth or 0
     player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
 
     world:draw()
