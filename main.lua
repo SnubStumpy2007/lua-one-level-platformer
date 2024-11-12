@@ -37,7 +37,8 @@ end
 function love.update(dt)
 
   local isMoving = false
-  local vx, vy = 0
+  local vx = 0
+  local vy = 0
 
   -- player moviement
   if love.keyboard.isDown("d") then
@@ -58,8 +59,6 @@ function love.update(dt)
   player.collider:setLinearVelocity(vx, vy)
 
   if isMoving == true then
-    player.anim:update(dt)
-  else
     player.anim:gotoFrame(1)
   end
 
@@ -68,11 +67,11 @@ function love.update(dt)
       love.event.quit()
     end
 
-    
+    world:update(dt)
     player.x = player.collider:getX()
     player.y = player.collider:getY()
-    world:update(dt)
-
+ 
+    player.anim:update(dt)
 
   
 end
