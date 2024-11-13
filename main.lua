@@ -17,16 +17,15 @@ function love.load()
   -- windfield physics 
   wf = require('libraries/windfield')
   world = wf.newWorld(0,0, true)
-  --world:setGravity(0, 150)
+  world:setGravity(0, 10000)
+  world:addCollisionClass("Solid")
 
-  -- test code to test gravity and physics
-  --rectangle = world:newRectangleCollider(100,430, 40, 80)
-
-
+  -- local floor = world:newRectangleCollider(100, 430, 300, 50)
+  -- floor:setType('static')
 
   -- importing modules
   player = require('/modules/player')
- -- walls = require('/modules/walls')
+  walls = require('/modules/walls')
 
 
   -- push setup for fullscreen game
