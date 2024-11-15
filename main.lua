@@ -2,7 +2,7 @@
 SCREEN_WIDTH, SCREEN_HEIGHT = love.window.getDesktopDimensions()
 --CREEN_WIDTH, SCREEN_HEIGHT = SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.8
 
-VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 790, 530
+--VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 790, 530
 -- readd 320, 240 back to the virtual height when camera is ready to work 790, 640
 
 function love.load()
@@ -13,6 +13,8 @@ function love.load()
   push = require('libraries.push-master.push')
   anim8 = require('libraries/anim8')
   love.graphics.setDefaultFilter("nearest", "nearest")
+  camera = require('libraries.camera')
+  cam = camera()
 
   -- windfield physics 
   wf = require('libraries/windfield')
@@ -29,8 +31,8 @@ function love.load()
 
 
   -- push setup for fullscreen game
-  love.graphics.setDefaultFilter("nearest", "nearest")
-    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {fullscreen = true, vsync = true, resizable = true, stretched = true})
+  -- love.graphics.setDefaultFilter("nearest", "nearest")
+  --   push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {fullscreen = true, vsync = true, resizable = true, stretched = true})
 end
 
 function love.update(dt)
@@ -72,7 +74,7 @@ function love.update(dt)
  
     player.anim:update(dt)
 
-  
+  cam:lookAt(player.x, player.y)
 end
 
 function love.resize(w,h)
@@ -80,15 +82,21 @@ function love.resize(w,h)
 end
 
 function love.draw()
-  push:start()
-    gameMap:draw(0,0)
+ 
+  --push:start()
+  cam:attach()
+    -- gameMap:drawLayer(gameMap.layers["Platforms"])
+    -- gameMap:drawLayer(gameMap.layers["Background"])
+    gameMap:draw()
 
 
     local spriteWidth = 32 * 2
     local spriteHeight = 32 * 2
     local offsetX = player.scaleX < 0 and spriteWidth or 0
     player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
+    cam:detach()
 
     world:draw()
-    push:finish()
+   -- push:finish()
+   
 end
