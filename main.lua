@@ -74,7 +74,7 @@ function love.update(dt)
  
     player.anim:update(dt)
 
-  cam:lookAt(player.x, player.y)
+  cam:lookAt(400, 300)
 end
 
 -- function love.resize(w,h)
@@ -90,11 +90,11 @@ function love.draw()
     gameMap:draw()
 
 
-    -- local spriteWidth = 32 * 2
-    -- local spriteHeight = 32 * 2
-    -- local offsetX = player.scaleX < 0 and spriteWidth or 0
-    -- player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
-    player.anim:draw(player.spriteSheet, player.x, player.y)
+    local spriteWidth = 32 * 2
+    local spriteHeight = 32 * 2
+    local offsetX = player.scaleX < 0 and spriteWidth or 0
+    player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
+    --player.anim:draw(player.spriteSheet, player.x, player.y)
     cam:detach()
 
     world:draw()
