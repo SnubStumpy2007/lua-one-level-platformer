@@ -1,8 +1,8 @@
 
-SCREEN_WIDTH, SCREEN_HEIGHT = love.window.getDesktopDimensions()
-SCREEN_WIDTH, SCREEN_HEIGHT = SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.8
+-- SCREEN_WIDTH, SCREEN_HEIGHT = love.window.getDesktopDimensions()
+-- SCREEN_WIDTH, SCREEN_HEIGHT = SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.8
 
-VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 790, 530
+-- VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 790, 530
 -- readd 320, 240 back to the virtual height when camera is ready to work 790, 640
 
 function love.load()
@@ -29,8 +29,8 @@ function love.load()
 
 
   --push setup for fullscreen game
-  love.graphics.setDefaultFilter("nearest", "nearest")
-    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {fullscreen = true, vsync = true, resizable = true, stretched = true})
+  -- love.graphics.setDefaultFilter("nearest", "nearest")
+  --   push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {fullscreen = true, vsync = true, resizable = true, stretched = true})
 end
 
 function love.update(dt)
@@ -72,10 +72,12 @@ function love.update(dt)
  
     player.anim:update(dt)
 
-  cam:lookAt(500, 500) -- 400, 300
+  cam:lookAt(400, 300) -- 400, 300, player.x, player.y
 
   local mapW = gameMap.width * gameMap.tilewidth
   local mapH = gameMap.height * gameMap.tileheight
+  -- local camW = VIRTUAL_WIDTH / 2
+  -- local camH = VIRTUAL_HEIGHT / 2
 
   -- limit camera to game map
   local w = love.graphics.getWidth()
@@ -89,7 +91,16 @@ function love.update(dt)
   if cam.y > (mapH - h/2) then
     cam.y = (mapH - h/2)
   end
+  -- left border
+  -- if cam.x > camW then
+  --   cam.x = camW
+  -- end
+  -- top border
+  -- if cam.y > camH then
+  --   cam.y = camH
+  -- end
 
+  
 
 end
 
@@ -99,7 +110,7 @@ end
 
 function love.draw()
  
-  push:start()
+ -- push:start()
   cam:attach()
     -- gameMap:drawLayer(gameMap.layers["Platforms"])
     -- gameMap:drawLayer(gameMap.layers["Background"])
@@ -110,10 +121,9 @@ function love.draw()
     local spriteHeight = 32 * 2
     local offsetX = player.scaleX < 0 and spriteWidth or 0
     player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
-    --player.anim:draw(player.spriteSheet, player.x, player.y)
     cam:detach()
 
     world:draw()
-    push:finish()
+   -- push:finish()
    
 end

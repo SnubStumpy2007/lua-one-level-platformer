@@ -8,11 +8,11 @@
     ],
     "fileStates": {
         "gameMap.tmx": {
-            "scale": 0.75,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 532.6666666666665,
-                "y": 637.3333333333334
+                "x": 437,
+                "y": 285
             }
         },
         "gameMap.tmx#goodly-2x": {
