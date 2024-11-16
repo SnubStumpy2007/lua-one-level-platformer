@@ -2,6 +2,8 @@ local player = {}
 player.x = 100
 player.y = 300
 player.speed = 350
+player.jumpVel = 1000
+--player.yvel = 0
 player.spriteSheet = love.graphics.newImage('/sprites/guido.png') --kelvinshadewing.net.
 player.collider = world:newBSGRectangleCollider(100, 300, 40, 80, 10) -- 430
 player.collider:setFixedRotation(true)

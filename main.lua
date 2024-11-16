@@ -19,7 +19,7 @@ function love.load()
   -- windfield physics 
   wf = require('libraries/windfield')
   world = wf.newWorld(0,0, true)
-  world:setGravity(0, 10000)
+  world:setGravity(0, 50000)
   world:addCollisionClass("Solid")
 
 
@@ -50,11 +50,12 @@ function love.update(dt)
     player.anim = player.animations.walk
     player.scaleX = -2 
     isMoving = true
-  elseif love.keyboard.isDown("space") then
-    vy = player.y * - 3
+  elseif love.keyboard.isDown("space") and playerCanJump then
+    vy = - player.jumpVel
     player.anim = player.animations.jump
-    isMoving = true
+    playerCanJump = false
   end
+
 
   player.collider:setLinearVelocity(vx, vy)
 
