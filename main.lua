@@ -42,23 +42,24 @@ function love.update(dt)
   -- player moviement
   if love.keyboard.isDown("d") then
     vx = player.speed
-    -- player.anim = player.animations.walk
+     player.anim = player.animations.walk
     player.scaleX = 2
     isMoving = true
   elseif love.keyboard.isDown("a") then
     vx = - player.speed
-   -- player.anim = player.animations.walk
+    player.anim = player.animations.walk
     player.scaleX = -2 
     isMoving = true
   elseif love.keyboard.isDown("space") then
     vy = player.y * - 3
+    player.anim = player.animations.jump
     isMoving = true
   end
 
   player.collider:setLinearVelocity(vx, vy)
 
-  if isMoving == true then
-    player.anim:gotoFrame(1)
+  if isMoving == false then
+    player.anim:gotoFrame(2)
   end
 
   --press the escape key to exit the game
