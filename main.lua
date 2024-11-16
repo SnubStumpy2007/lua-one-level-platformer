@@ -1,8 +1,8 @@
 
 SCREEN_WIDTH, SCREEN_HEIGHT = love.window.getDesktopDimensions()
---CREEN_WIDTH, SCREEN_HEIGHT = SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.8
+SCREEN_WIDTH, SCREEN_HEIGHT = SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.8
 
---VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 790, 530
+VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 790, 530
 -- readd 320, 240 back to the virtual height when camera is ready to work 790, 640
 
 function love.load()
@@ -22,17 +22,15 @@ function love.load()
   world:setGravity(0, 10000)
   world:addCollisionClass("Solid")
 
-  -- local floor = world:newRectangleCollider(100, 430, 300, 50)
-  -- floor:setType('static')
 
   -- importing modules
   player = require('/modules/player')
   walls = require('/modules/walls')
 
 
-  -- push setup for fullscreen game
-  -- love.graphics.setDefaultFilter("nearest", "nearest")
-  --   push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {fullscreen = true, vsync = true, resizable = true, stretched = true})
+  --push setup for fullscreen game
+  love.graphics.setDefaultFilter("nearest", "nearest")
+    push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {fullscreen = true, vsync = true, resizable = true, stretched = true})
 end
 
 function love.update(dt)
@@ -74,16 +72,34 @@ function love.update(dt)
  
     player.anim:update(dt)
 
-  cam:lookAt(400, 300)
+  cam:lookAt(500, 500) -- 400, 300
+
+  local mapW = gameMap.width * gameMap.tilewidth
+  local mapH = gameMap.height * gameMap.tileheight
+
+  -- limit camera to game map
+  local w = love.graphics.getWidth()
+  local h = love.graphics.getHeight()
+
+  -- right border
+  if cam.x > (mapW - w/2) then
+    cam.x = (mapW - w/2)
+  end
+  -- bottom border
+  if cam.y > (mapH - h/2) then
+    cam.y = (mapH - h/2)
+  end
+
+
 end
 
--- function love.resize(w,h)
---   push:resize(w,h)
--- end
+function love.resize(w,h)
+  push:resize(w,h)
+end
 
 function love.draw()
  
-  --push:start()
+  push:start()
   cam:attach()
     -- gameMap:drawLayer(gameMap.layers["Platforms"])
     -- gameMap:drawLayer(gameMap.layers["Background"])
@@ -98,6 +114,6 @@ function love.draw()
     cam:detach()
 
     world:draw()
-   -- push:finish()
+    push:finish()
    
 end
