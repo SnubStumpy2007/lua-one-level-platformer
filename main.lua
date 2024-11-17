@@ -1,10 +1,4 @@
 
--- SCREEN_WIDTH, SCREEN_HEIGHT = love.window.getDesktopDimensions()
--- SCREEN_WIDTH, SCREEN_HEIGHT = SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.8
-
--- VIRTUAL_WIDTH, VIRTUAL_HEIGHT = 790, 530
--- readd 320, 240 back to the virtual height when camera is ready to work 790, 640
-
 function love.load()
 
   -- libraries
@@ -30,10 +24,6 @@ function love.load()
   player = require('/modules/player')
   walls = require('/modules/walls')
 
-
-  --push setup for fullscreen game
-  -- love.graphics.setDefaultFilter("nearest", "nearest")
-  --   push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT, {fullscreen = true, vsync = true, resizable = true, stretched = true})
 end
 
 function love.update(dt)
@@ -77,18 +67,9 @@ function love.update(dt)
  
     player.anim:update(dt)
 
- -- cam:lookAt(400, 300) -- 400, 300, player.x, player.y
+
  -- gamera
     cam:setPosition(player.x, player.y)
-
-  local mapW = gameMap.width * gameMap.tilewidth
-  local mapH = gameMap.height * gameMap.tileheight
-  -- local camW = VIRTUAL_WIDTH / 2
-  -- local camH = VIRTUAL_HEIGHT / 2
-
-  -- limit camera to game map
-  local w = love.graphics.getWidth()
-  local h = love.graphics.getHeight()
 
 
 end
