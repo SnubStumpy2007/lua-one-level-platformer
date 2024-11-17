@@ -13,13 +13,16 @@ function love.load()
   push = require('libraries.push-master.push')
   anim8 = require('libraries/anim8')
   love.graphics.setDefaultFilter("nearest", "nearest")
-  camera = require('libraries.camera')
-  cam = camera()
+  gamera = require('libraries.gamera')
+
+
+  -- gamera.lua
+   cam = gamera.new(0,0,800,590)
 
   -- windfield physics 
   wf = require('libraries/windfield')
   world = wf.newWorld(0,0, true)
-  world:setGravity(0, 50000)
+  world:setGravity(0, 10000)
   world:addCollisionClass("Solid")
 
 
@@ -50,17 +53,17 @@ function love.update(dt)
     player.anim = player.animations.walk
     player.scaleX = -2 
     isMoving = true
-  elseif love.keyboard.isDown("space") and playerCanJump then
-    vy = - player.jumpVel
+  elseif love.keyboard.isDown("space") then
+    vy =  - player.jumpVel
     player.anim = player.animations.jump
-    playerCanJump = false
+    isMoving = true
   end
 
 
   player.collider:setLinearVelocity(vx, vy)
 
   if isMoving == false then
-    player.anim:gotoFrame(2)
+    player.anim:gotoFrame(1)
   end
 
   --press the escape key to exit the game
@@ -74,7 +77,9 @@ function love.update(dt)
  
     player.anim:update(dt)
 
-  cam:lookAt(400, 300) -- 400, 300, player.x, player.y
+ -- cam:lookAt(400, 300) -- 400, 300, player.x, player.y
+ -- gamera
+    cam:setPosition(player.x, player.y)
 
   local mapW = gameMap.width * gameMap.tilewidth
   local mapH = gameMap.height * gameMap.tileheight
@@ -85,24 +90,6 @@ function love.update(dt)
   local w = love.graphics.getWidth()
   local h = love.graphics.getHeight()
 
-  -- right border
-  if cam.x > (mapW - w/2) then
-    cam.x = (mapW - w/2)
-  end
-  -- bottom border
-  if cam.y > (mapH - h/2) then
-    cam.y = (mapH - h/2)
-  end
-  -- left border
-  -- if cam.x > camW then
-  --   cam.x = camW
-  -- end
-  -- top border
-  -- if cam.y > camH then
-  --   cam.y = camH
-  -- end
-
-  
 
 end
 
@@ -112,20 +99,18 @@ end
 
 function love.draw()
  
- -- push:start()
-  cam:attach()
-    -- gameMap:drawLayer(gameMap.layers["Platforms"])
-    -- gameMap:drawLayer(gameMap.layers["Background"])
-    gameMap:draw()
 
 
-    local spriteWidth = 32 * 2
-    local spriteHeight = 32 * 2
-    local offsetX = player.scaleX < 0 and spriteWidth or 0
-    player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
-    cam:detach()
+    local function drawCameraStuff()
+      gameMap:draw()
+      local spriteWidth = 32 * 2
+      local spriteHeight = 32 * 2
+      local offsetX = player.scaleX < 0 and spriteWidth or 0
+      player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
+
+    end
+    cam:draw(drawCameraStuff)
 
     world:draw()
-   -- push:finish()
-   
+
 end
