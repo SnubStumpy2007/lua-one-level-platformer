@@ -35,12 +35,12 @@ function love.update(dt)
   -- player moviement
   if love.keyboard.isDown("d") then
     vx = player.speed
-     player.anim = player.animations.walk
+     player.anim = player.animations.right
     player.scaleX = 2
     isMoving = true
   elseif love.keyboard.isDown("a") then
     vx = - player.speed
-    player.anim = player.animations.walk
+    player.anim = player.animations.left
     player.scaleX = -2 
     isMoving = true
   elseif love.keyboard.isDown("space") then
