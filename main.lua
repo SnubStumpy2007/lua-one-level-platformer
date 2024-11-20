@@ -1,5 +1,6 @@
 
 function love.load()
+  love.window.setMode(1024, 640)
 
   -- libraries
   sti = require('libraries.sti')
@@ -11,7 +12,7 @@ function love.load()
 
 
   -- gamera.lua
-   cam = gamera.new(0, 0, 800, 590) -- 800, 590, 1024, 640
+   cam = gamera.new(0, 0, 1024, 640) -- 800, 590, 1024, 640
 
   -- windfield physics 
   wf = require('libraries/windfield')
@@ -78,15 +79,16 @@ function love.draw()
  
     local function drawCameraStuff()
       gameMap:draw()
-      -- local spriteWidth = 32 * 2
-      -- local spriteHeight = 32 * 2
-      -- local offsetX = player.scaleX < 0 and spriteWidth or 0
-      -- player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
-      player.anim:draw(player.spriteSheet, player.x, player.y)
+      --gameMap:resize(1024, 640)
+      local spriteWidth = 32 * 2
+      local spriteHeight = 32 * 2
+      local offsetX = player.scaleX < 0 and spriteWidth or 0
+       player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
+     -- player.anim:draw(player.spriteSheet, player.x, player.y)
 
     end
     cam:draw(drawCameraStuff)
 
-    world:draw()
+   -- world:draw()
 
 end
