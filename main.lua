@@ -25,6 +25,10 @@ function love.load()
   player = require('/modules/player')
   walls = require('/modules/walls')
 
+  -- sounds
+  sound = love.audio.newSource("/sounds/Athletic.mp3", "stream")
+  death = love.audio.newSource("/sounds/Death.mp3", "static")
+  jump = love.audio.newSource("/sounds/Jump.mp3", "static")
 end
 
 function love.update(dt)
@@ -48,6 +52,7 @@ function love.update(dt)
     vy =  - player.jumpVel
     player.anim = player.animations.jump
     isMoving = true
+    jump:play()
   end
 
 
@@ -72,10 +77,10 @@ function love.update(dt)
  -- gamera
     cam:setPosition(player.x, player.y)
 
-
 end
 
 function love.draw()
+  sound:play()
  
     local function drawCameraStuff()
       gameMap:draw()
