@@ -17,7 +17,7 @@ function love.load()
   -- windfield physics 
   wf = require('libraries/windfield')
   world = wf.newWorld(0,0, true)
-  world:setGravity(0, 10000)
+  world:setGravity(0, 100000)
   world:addCollisionClass("Solid")
 
 
@@ -76,6 +76,12 @@ function love.update(dt)
 
  -- gamera
     cam:setPosition(player.x, player.y)
+
+    if player.y < 100 then
+      death:play()
+      --love.audio.stop()
+     -- love.event.quit()
+    end
 
 end
 
