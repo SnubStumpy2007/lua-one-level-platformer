@@ -80,7 +80,7 @@ function love.update(dt)
     if player.y > 700 then
       love.audio.stop(sound)
       death:play()
-      love.timer.sleep(5) 
+      love.timer.sleep(5)
       love.audio.stop()
       love.event.quit()
     end
