@@ -9,10 +9,10 @@
     "fileStates": {
         "gameMap.tmx": {
             "scale": 1,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 613,
-                "y": 337
+                "x": 971,
+                "y": 544
             }
         },
         "gameMap.tmx#goodly-2x": {

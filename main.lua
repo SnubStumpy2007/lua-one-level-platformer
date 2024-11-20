@@ -77,16 +77,18 @@ function love.update(dt)
  -- gamera
     cam:setPosition(player.x, player.y)
 
-    if player.y < 100 then
+    if player.y > 700 then
+      love.audio.stop(sound)
       death:play()
-      --love.audio.stop()
-     -- love.event.quit()
+      love.timer.sleep(5) 
+      love.audio.stop()
+      love.event.quit()
     end
 
 end
 
 function love.draw()
-  sound:play()
+ sound:play()
  
     local function drawCameraStuff()
       gameMap:draw()
