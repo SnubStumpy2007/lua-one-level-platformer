@@ -9,6 +9,7 @@ function love.load()
   anim8 = require('libraries/anim8')
   love.graphics.setDefaultFilter("nearest", "nearest")
   gamera = require('libraries.gamera')
+  timer = require('libraries.timer')
 
 
   -- gamera.lua
@@ -29,6 +30,9 @@ function love.load()
   sound = love.audio.newSource("/sounds/Athletic.mp3", "stream")
   death = love.audio.newSource("/sounds/Death.mp3", "static")
   jump = love.audio.newSource("/sounds/Jump.mp3", "static")
+
+  -- timers
+  jumpTimer = timer:new()
 end
 
 function love.update(dt)
@@ -52,9 +56,14 @@ function love.update(dt)
       vy = -player.jumpVel
       player.anim = player.animations.jump
      isMoving = true
-    -- playerCanJump = false
-      jump:play()
-    
+    jump:play()
+    jumpTimer.tween(2)
+    playerCanJump = false
+  end
+
+  if playerCanJump == false then
+    jumpTimer.tween(1)
+    playerCanJump = true
   end
 
 
