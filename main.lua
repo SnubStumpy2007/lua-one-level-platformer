@@ -52,18 +52,18 @@ function love.update(dt)
     player.anim = player.animations.left
     player.scaleX = -2 
     isMoving = true
-  elseif love.keyboard.isDown("space") and playerCanJump then
+  elseif love.keyboard.isDown("space") and playerCanJump == true then
     vy = -player.jumpVel
     player.anim = player.animations.jump
     isMoving = true
     jump:play()
-    if player.jumpHeight > 200 then
+    if vy <= player.jumpHeight then
       playerCanJump = false
     end
     
   end
 
-  if playerCanJump == false then
+  if playerCanJump == false and vy == 0 then
     playerCanJump = true
   end
 
