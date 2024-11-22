@@ -2,8 +2,8 @@ local player = {}
 player.x = 100
 player.y = 300
 player.speed = 550
-player.jumpVel = 2000
---player.yvel = 0
+player.jumpVel = 10000
+player.yvel = 0
 player.spriteSheet = love.graphics.newImage('/sprites/guido.png') --kelvinshadewing.net.
 player.collider = world:newBSGRectangleCollider(100, 300, 40, 70, 10) -- 430
 player.collider:setFixedRotation(true)
@@ -16,7 +16,7 @@ playerCanJump = true
 player.animations = {}
 player.animations.stand = anim8.newAnimation(player.grid('1-4', 1), 0.2)
 player.animations.right = anim8.newAnimation(player.grid('1-4', 2), 0.2)
-player.animations.left = anim8.newAnimation(player.grid('4-1', 1), 0.2)
+player.animations.left = anim8.newAnimation(player.grid('1-4', 1), 0.2)
 player.animations.jump = anim8.newAnimation(player.grid('5-6', 1), 0.2)
 
 player.anim = player.animations.stand
