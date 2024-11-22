@@ -4,12 +4,15 @@ player.y = 300
 player.speed = 550
 player.jumpVel = 2500
 player.yvel = 0
+player.jumpHeight = 200
 player.spriteSheet = love.graphics.newImage('/sprites/guido.png') --kelvinshadewing.net.
 player.collider = world:newBSGRectangleCollider(100, 300, 40, 70, 10) -- 430
 player.collider:setFixedRotation(true)
 player.grid = anim8.newGrid(32, 32, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
 player.scaleX = 2
 playerCanJump = true
+
+
 
 
 

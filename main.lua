@@ -53,16 +53,17 @@ function love.update(dt)
     player.scaleX = -2 
     isMoving = true
   elseif love.keyboard.isDown("space") and playerCanJump then
-      vy = -player.jumpVel
-      player.anim = player.animations.jump
-     isMoving = true
+    vy = -player.jumpVel
+    player.anim = player.animations.jump
+    isMoving = true
     jump:play()
-    jumpTimer.tween(2)
-    playerCanJump = false
+    if player.jumpHeight > 200 then
+      playerCanJump = false
+    end
+    
   end
 
   if playerCanJump == false then
-    jumpTimer.tween(1)
     playerCanJump = true
   end
 
@@ -99,13 +100,18 @@ function love.update(dt)
 end
 
 -- function love.keypressed(key)
+  
 --   if love.keyboard.isDown("space") and playerCanJump then
---     player.yvel = -player.jumpVel
---     player.anim = player.animations.jump
---    -- playerCanJump = false
---   --  isMoving = true
---     jump:play()
---   end
+--     vy = -player.jumpVel
+--       player.anim = player.animations.jump
+--       isMoving = true
+--       jump:play()
+--       playerCanJump = false
+--     end
+--     if playerCanJump == false then
+--       --  jumpTimer.tween(1)
+--         playerCanJump = true
+--       end
 --   end
 
 
