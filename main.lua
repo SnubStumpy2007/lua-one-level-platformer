@@ -57,10 +57,11 @@ function love.update(dt)
     player.anim = player.animations.jump
     isMoving = true
     jump:play()
-    if vy <= player.jumpHeight then
-      playerCanJump = false
-    end
-    
+  end
+
+  if player.y >= player.jumpHeight then
+    playerCanJump = false
+    player.jumpVel = 0
   end
 
   if playerCanJump == false and vy == 0 then
