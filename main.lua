@@ -59,14 +59,14 @@ function love.update(dt)
     jump:play()
   end
 
-  if player.y >= player.jumpHeight then
-    playerCanJump = false
-    player.jumpVel = 0
-  end
+  -- if player.y >= player.jumpHeight then
+  --   playerCanJump = false
+  --   player.jumpVel = 0
+  -- end
 
-  if playerCanJump == false and vy == 0 then
-    playerCanJump = true
-  end
+  -- if playerCanJump == false and vy == 0 then
+  --   playerCanJump = true
+  -- end
 
 
   player.collider:setLinearVelocity(vx, vy)
