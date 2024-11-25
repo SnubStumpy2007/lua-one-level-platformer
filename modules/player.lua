@@ -24,4 +24,6 @@ player.animations.jump = anim8.newAnimation(player.grid('5-6', 1), 0.2)
 
 player.anim = player.animations.stand
 
+
+
 return player

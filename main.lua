@@ -108,12 +108,8 @@ end
 --       isMoving = true
 --       jump:play()
 --       playerCanJump = false
---     end
---     if playerCanJump == false then
---       --  jumpTimer.tween(1)
---         playerCanJump = true
---       end
 --   end
+-- end
 
 
 function love.draw()
