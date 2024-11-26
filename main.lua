@@ -20,6 +20,7 @@ function love.load()
   world = wf.newWorld(0,0, true)
   world:setGravity(0, 100000)
   world:addCollisionClass("Solid")
+  world:addCollisionClass("Player")
 
 
   -- importing modules
@@ -52,22 +53,19 @@ function love.update(dt)
     player.anim = player.animations.left
     player.scaleX = -2 
     isMoving = true
-  elseif love.keyboard.isDown("space") and playerCanJump == true then
+  end
+
+  if love.keyboard.isDown("space") and playerCanJump then
     vy = -player.jumpVel
     player.anim = player.animations.jump
     isMoving = true
     jump:play()
+    jumpTimer:after(0.3, function() playerCanJump = false end)
   end
 
-  -- if player.y >= player.jumpHeight then
-  --   playerCanJump = false
-  --   player.jumpVel = 0
-  -- end
-
-  -- if playerCanJump == false and vy == 0 then
-  --   playerCanJump = true
-  -- end
-
+  if player.collider:enter("Solid") then
+    jumpTimer:after(0.3, function() playerCanJump = true end)
+  end
 
   player.collider:setLinearVelocity(vx, vy)
 
@@ -85,6 +83,7 @@ function love.update(dt)
     player.y = player.collider:getY()
  
     player.anim:update(dt)
+    jumpTimer:update(dt)
 
 
  -- gamera
