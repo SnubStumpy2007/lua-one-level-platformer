@@ -16,7 +16,7 @@ playerCanJump = true
 
 
 
-
+-- animations
 player.animations = {}
 player.animations.stand = anim8.newAnimation(player.grid('1-4', 1), 0.2)
 player.animations.right = anim8.newAnimation(player.grid('1-4', 2), 0.2)
