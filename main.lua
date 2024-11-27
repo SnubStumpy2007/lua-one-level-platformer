@@ -55,6 +55,7 @@ function love.update(dt)
     isMoving = true
   end
 
+  --jump mechanics
   if love.keyboard.isDown("space") and playerCanJump then
     vy = -player.jumpVel
     player.anim = player.animations.jump
@@ -63,12 +64,14 @@ function love.update(dt)
     jumpTimer:after(0.3, function() playerCanJump = false end)
   end
 
+  -- if statement to reset playerCanJump to true
   if player.collider:enter("Solid") then
     jumpTimer:after(0.3, function() playerCanJump = true end)
   end
 
   player.collider:setLinearVelocity(vx, vy)
 
+  -- set animation to default upon releasing movement keys
   if isMoving == false then
     player.anim:gotoFrame(1)
   end
@@ -82,6 +85,7 @@ function love.update(dt)
     player.x = player.collider:getX()
     player.y = player.collider:getY()
  
+    -- update statements for data units
     player.anim:update(dt)
     jumpTimer:update(dt)
 
@@ -99,30 +103,15 @@ function love.update(dt)
 
 end
 
--- function love.keypressed(key)
-  
---   if love.keyboard.isDown("space") and playerCanJump then
---     vy = -player.jumpVel
---       player.anim = player.animations.jump
---       isMoving = true
---       jump:play()
---       playerCanJump = false
---   end
--- end
-
-
 function love.draw()
  sound:play()
  
     local function drawCameraStuff()
       gameMap:draw()
-      --gameMap:resize(1024, 640)
       local spriteWidth = 32 * 2
       local spriteHeight = 32 * 2
       local offsetX = player.scaleX < 0 and spriteWidth or 0
        player.anim:draw(player.spriteSheet, player.x + offsetX - spriteWidth / 2, player.y - spriteHeight / 2, 0,player.scaleX, 2)
-     -- player.anim:draw(player.spriteSheet, player.x, player.y)
-
     end
     cam:draw(drawCameraStuff)
 
